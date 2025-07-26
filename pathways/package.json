@@ -12,7 +12,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://jhorowitz16.github.io/Pathways",
+  "homepage": "https://jhorowitz16.github.io/Pathways/pathways",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
