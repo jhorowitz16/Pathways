@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import StylizedMap from './StylizedMap'; // Assuming StylizedMap.jsx is in the same directory
 
 const DriverDashboard = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -120,116 +121,25 @@ const DriverDashboard = () => {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '24px', height: 'calc(100vh - 120px)' }}>
+        <div style={{ display: 'flex', gap: '24px', height: 'calc(100vh - 240px)' }}>
           {/* Map Section */}
           <div style={{ flex: 1 }}>
             <div style={{
               backgroundColor: '#1a1a2e',
               borderRadius: '16px',
               padding: '24px',
-              height: '70%',
+              height: '70%', // This will control the height of the map area
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              display: 'flex', // Added flex to center the map
+              alignItems: 'center', // Added to center the map
+              justifyContent: 'center' // Added to center the map
             }}>
-              {/* 3D Map Simulation */}
-              <div style={{
-                width: '100%',
-                height: '100%',
-                background: 'linear-gradient(45deg, #0f0f23 0%, #1a1a2e 50%, #2d2d4a 100%)',
-                borderRadius: '12px',
-                position: 'relative',
-                perspective: '1000px'
-              }}>
-                {/* Grid Pattern */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundImage: `
-                    linear-gradient(rgba(79, 70, 229, 0.1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(79, 70, 229, 0.1) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '40px 40px',
-                  transform: 'rotateX(60deg) translateZ(-50px)',
-                  transformOrigin: 'center center'
-                }} />
+              {/* The StylizedMap component goes here */}
+              <StylizedMap />
 
-                {/* Delivery Points */}
-                {[
-                  { top: '20%', left: '25%', color: '#10b981', label: 'Large and Bulky', status: 'completed' },
-                  { top: '35%', left: '45%', color: '#f59e0b', label: 'Large and Bulky', status: 'in-progress' },
-                  { top: '55%', left: '30%', color: '#ef4444', label: 'Large and Bulky', status: 'pending' },
-                  { top: '40%', left: '65%', color: '#8b5cf6', label: 'Live and Bulky', status: 'completed' },
-                  { top: '65%', left: '55%', color: '#06b6d4', label: 'Overnight', status: 'in-progress' }
-                ].map((point, index) => (
-                  <div key={index} style={{
-                    position: 'absolute',
-                    top: point.top,
-                    left: point.left,
-                    transform: 'translate(-50%, -50%)'
-                  }}>
-                    <div style={{
-                      width: '12px',
-                      height: '12px',
-                      backgroundColor: point.color,
-                      borderRadius: '50%',
-                      boxShadow: `0 0 20px ${point.color}`,
-                      animation: 'pulse 2s infinite'
-                    }} />
-                    <div style={{
-                      position: 'absolute',
-                      top: '-40px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      backgroundColor: 'rgba(26, 26, 46, 0.95)',
-                      padding: '6px 12px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      whiteSpace: 'nowrap',
-                      border: '1px solid rgba(79, 70, 229, 0.3)'
-                    }}>
-                      {point.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Map Controls */}
-              <div style={{
-                position: 'absolute',
-                top: '20px',
-                right: '20px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px'
-              }}>
-                <button style={{
-                  width: '40px',
-                  height: '40px',
-                  backgroundColor: 'rgba(26, 26, 46, 0.8)',
-                  border: '1px solid rgba(79, 70, 229, 0.3)',
-                  borderRadius: '8px',
-                  color: '#ffffff',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>+</button>
-                <button style={{
-                  width: '40px',
-                  height: '40px',
-                  backgroundColor: 'rgba(26, 26, 46, 0.8)',
-                  border: '1px solid rgba(79, 70, 229, 0.3)',
-                  borderRadius: '8px',
-                  color: '#ffffff',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>-</button>
-              </div>
+              {/* Map Controls (if needed, you can re-add them here and style them to overlay the map) */}
+              {/* For now, removing the old map controls as they were specific to the previous implementation */}
             </div>
 
             {/* Stats Row */}
@@ -249,7 +159,7 @@ const DriverDashboard = () => {
                 <p style={{ fontSize: '28px', fontWeight: '700', margin: '0 0 4px 0' }}>$12300</p>
                 <p style={{ fontSize: '12px', color: '#10b981', margin: 0 }}>+12% increase from previous time frame</p>
               </div>
-              
+
               <div style={{
                 backgroundColor: '#1a1a2e',
                 borderRadius: '12px',
