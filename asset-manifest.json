@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/Pathways/pathways/static/js/main.e732e77a.js",
-    "index.html": "/Pathways/pathways/index.html",
-    "main.e732e77a.js.map": "/Pathways/pathways/static/js/main.e732e77a.js.map"
+    "main.js": "/Pathways/static/js/main.e732e77a.js",
+    "index.html": "/Pathways/index.html",
+    "main.e732e77a.js.map": "/Pathways/static/js/main.e732e77a.js.map"
   },
   "entrypoints": [
     "static/js/main.e732e77a.js"
