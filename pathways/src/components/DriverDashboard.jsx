@@ -207,7 +207,7 @@ const DriverDashboard = () => {
   const [deliveryWindowRemaining, setDeliveryWindowRemaining] = useState(1200); // seconds (20 mins)
   const [instructionsFeed, setInstructionsFeed] = useState([
     "Approaching 123 Main St.",
-    "Turn right at Elm St.",
+    "Turn left at Elm St.",
     "Look for blue door on right.",
     "Freight elevator access via East entrance."
   ]);
@@ -323,7 +323,7 @@ const DriverDashboard = () => {
       }
       // Segment 12: Loop back to start
       else if (currentPositionIndex === 12) {
-        newStatus = "Trip Complete"; // More descriptive status for end of trip
+        newStatus = "Trip Complete."; // More descriptive status for end of trip
       }
       setDriverStatus(newStatus);
 
@@ -335,7 +335,7 @@ const DriverDashboard = () => {
           setCurrentStopETA(15);
           setInitialETA(20);
           setDeliveryWindowRemaining(1200);
-          setInstructionsFeed(["Approaching 123 Main St.", "Turn right at Elm St.", "Look for blue door on right.", "Freight elevator access via East entrance."]);
+          setInstructionsFeed(["Approaching 123 Main St.", "Turn left at Elm St.", "Look for blue door on right.", "Freight elevator access via East entrance."]);
           setDeliveryCost(0.00);
       }
 
@@ -343,7 +343,7 @@ const DriverDashboard = () => {
       // Update instructions based on currentSegmentIndex
       // Add new instructions only if they are not already the most recent one
       if (currentPositionIndex === 0 && instructionsFeed[0] !== "Approaching 123 Main St.") {
-        setInstructionsFeed(["Approaching 123 Main St.", "Turn right at Elm St.", "Look for blue door on right.", "Freight elevator access via East entrance."]);
+        setInstructionsFeed(["Approaching 123 Main St.", "Turn left at Elm St.", "Look for blue door on right.", "Freight elevator access via East entrance."]);
       } else if (currentPositionIndex === 3 && instructionsFeed[0] !== "Waiting at initial stop.") {
         setInstructionsFeed(prev => ["Waiting at initial stop.", ...prev]);
       } else if (currentPositionIndex === 6 && instructionsFeed[0] !== "Parked near building. Prepare for delivery.") {
@@ -359,7 +359,7 @@ const DriverDashboard = () => {
       }
 
 
-    }, 500); // Update every 0.5 seconds for better real-time feel
+    }, 100); // Update every 0.1 seconds for better real-time feel
 
     return () => clearInterval(metricsInterval);
   }, [currentStopETA, deliveryWindowRemaining, currentPositionIndex, deliveryCost, instructionsFeed]); // Added instructionsFeed to dependencies
@@ -403,7 +403,10 @@ const DriverDashboard = () => {
   return (
     <div style={{
       backgroundColor: '#0f0f23',
-      minHeight: '100vh',
+      // Ensure the main container takes up the full viewport and hides overflow
+      width: '100vw',
+      height: '100vh',
+      overflow: 'hidden', // Prevents scrolling
       color: '#ffffff',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       display: 'flex',
@@ -431,7 +434,7 @@ const DriverDashboard = () => {
               justifyContent: 'center',
               fontSize: '12px'
             }}>🚛</div>
-            <h1 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>Delivery drivers</h1>
+            <h1 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>Pathways</h1>
           </div>
         </div>
 
@@ -450,12 +453,12 @@ const DriverDashboard = () => {
             </h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '🏠', label: 'Dashboard', active: true },
-                { icon: '�', label: 'Deliveries' },
-                { icon: '📍', label: 'Deliveries' },
+                { icon: '🏠', label: 'Driver Dashboard', active: true },
+                { icon: '🚛', label: 'Deliveries' },
+                { icon: '📍', label: 'Locations' },
                 { icon: '👥', label: 'Customers' },
                 { icon: '📈', label: 'Rankings' },
-                { icon: '📊', label: 'LeaderMetric' },
+                { icon: '📊', label: 'Leaderboard' },
                 { icon: '📋', label: 'History' },
                 { icon: '⚙️', label: 'Settings' }
               ].map((item, index) => (
@@ -561,9 +564,11 @@ const DriverDashboard = () => {
                 padding: '10px 20px', // Adjusted padding here
                 flex: 1
               }}>
-                <h3 style={{ fontSize: '14px', color: '#9ca3af', margin: '0 0 8px 0' }}>Optimized Routes</h3>
-                <p style={{ fontSize: '28px', fontWeight: '700', margin: '0 0 4px 0' }}>$12300</p>
+                <h3 style={{ fontSize: '14px', color: '#9ca3af', margin: '0 0 8px 0' }}>Gross Merchandise Value (Year to Date)</h3>
+                <p style={{ fontSize: '28px', fontWeight: '700', margin: '0 0 4px 0' }}>$510,259</p>
                 <p style={{ fontSize: '12px', color: '#10b981', margin: 0 }}>+12% increase from previous time frame</p>
+                <p style={{ fontSize: '12px', color: '#10b981', margin: 0 }}>+32% in Customer Satisfaction (CSAT)</p>
+                <p style={{ fontSize: '12px', color: '#10b981', margin: 0 }}>+8% in Customer Retention</p>
               </div>
 
               <div style={{
@@ -680,6 +685,14 @@ const DriverDashboard = () => {
         @keyframes pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
+        }
+        /* Global styles to remove default margins/padding and scrollbars */
+        body, html, #root {
+          margin: 0;
+          padding: 0;
+          overflow: hidden; /* Hide scrollbars */
+          height: 100%;
+          width: 100%;
         }
       `}</style>
     </div>
