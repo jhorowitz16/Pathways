@@ -434,7 +434,7 @@ const DriverDashboard = () => {
               justifyContent: 'center',
               fontSize: '12px'
             }}>🚛</div>
-            <h1 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>Pathways</h1>
+            <h1 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>Last Mile Labs</h1>
           </div>
         </div>
 
